@@ -1,0 +1,13 @@
+<h1> Blog about travel Destinations </h1>
+
+<ul id = "articles">
+  <% @articles.each do |place|%>
+    <li> 
+      <%= link_to place.title, article_path(place) %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to 'Create new post', new_article_path, class: "new_article" %> 
+</div> 
