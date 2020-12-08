@@ -2,4 +2,8 @@
 
 <div> <%= @article.body%> </div>
 
-<p> <%= link_to 'List of Places', articles_path %> </p>
+<p> <%= link_to 'Edit pace entry', edit_article_path(@article) %>
+
+<p> <%= link_to 'Delete pace entry', article_path(@article), method: :delete, data: {confirm: "Are you sure?"}%>
+
+<p> <%= link_to 'Back to List of Places', articles_path %> </p>
