@@ -7,3 +7,11 @@
 <p> <%= link_to 'Delete pace entry', article_path(@article), method: :delete, data: {confirm: "Are you sure?"}%>
 
 <p> <%= link_to 'Back to List of Places', articles_path %> </p>
+
+<h3> Comments (<%=@article.comments.size%>)</h3>
+
+<%= render partial: 'comment', collection: @article.comments %>
+
+<h3> Add a comment </h3>
+
+<%= render partial: 'comments/form' %>
