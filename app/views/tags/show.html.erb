@@ -1,0 +1,10 @@
+<h1> Places with tag: <%= @tag.name%> <h1>
+
+<ul>
+  <% @tag.articles.each do |p| %>
+  <li> <%= link_to p.title, article_path(p) %> </li>
+  <%end%>
+</ul>
+
+<p> <%= link_to 'Show all tags', tags_path %> </p>
+<p> <%= link_to 'Delete tag', tag_path(@tag), method: :delete, data: {confirm:'Are you sure?'}%>
