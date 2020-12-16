@@ -5,6 +5,13 @@
     <%end%>
 </p>
 
+<p> 
+  <% if @article.image.exists? %>
+    <%= image_tag @article.image.url%> 
+  <%end%>
+  
+</p>
+
 <div> <%= @article.body%> </div>
 
 <p> <%= link_to 'Edit place entry', edit_article_path(@article) %>
