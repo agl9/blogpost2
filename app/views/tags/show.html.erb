@@ -7,4 +7,7 @@
 </ul>
 
 <p> <%= link_to 'Show all tags', tags_path %> </p>
+
+<%if logged_in?%>
 <p> <%= link_to 'Delete tag', tag_path(@tag), method: :delete, data: {confirm:'Are you sure?'}%>
+<%end%>

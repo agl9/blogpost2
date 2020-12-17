@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :require_login, except: [:index, :show]
+  
   def index
     @articles = Article.all
   end
@@ -48,6 +50,13 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :body, :tag_list, :image)
+  end
+
+  def require_login
+    unless logged_in?
+      flash.notice = "Please log in to proceed"
+      redirect_to articles_path
+    end
   end
 
 end

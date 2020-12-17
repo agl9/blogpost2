@@ -8,6 +8,8 @@
   <% end %>
 </ul>
 
-<div>
-  <%= link_to 'Create new post', new_article_path, class: "new_article" %> 
-</div> 
+<%if logged_in? %>
+  <div>
+    <%= link_to 'Create new post', new_article_path, class: "new_article" %> 
+  </div> 
+<%end%>
