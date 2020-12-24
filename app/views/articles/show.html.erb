@@ -5,14 +5,15 @@
     <%end%>
 </p>
 
-<p> 
-  <% if @article.image.exists? %>
-    <%= image_tag @article.image.url%> 
-  <%end%>
-  
-</p>
-
 <div> <%= @article.body%> </div>
+
+<div> 
+  <% if @article.attachments.exists? %>
+    <h3> Images: </h3>
+    <p><%= render partial: 'attachment', collection: @article.attachments%></p>
+  <%end%>
+</div>
+
 
 <%if logged_in?%>
   <p> <%= link_to 'Edit place entry', edit_article_path(@article) %>

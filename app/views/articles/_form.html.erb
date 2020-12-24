@@ -22,19 +22,7 @@
   </p>
 
   <p> 
-    <% if @article.image.exists? %>
-      <%= image_tag @article.image.url%> 
-    <%end%>
-  
-</p>
-
-  <p> <%= f.label :image, 'Add an Image' %> <br />
-      <%= f.file_field :image%>
-  </p>
-
-  <p> 
       <%= f.submit %> 
   </p>
-
-
 <% end %>
+

@@ -1,0 +1,12 @@
+
+<%= form_with(model: [ @article, @article.attachments.build], local: true, html: {multipart: true}) do |a| %>
+  <p> 
+      <%= a.label :image, 'Add an Image' %> <br />
+      <%= a.file_field :image%>
+  </p>
+  
+  <p>
+    <%= a.submit%>
+  </p>
+<%end%>
+
