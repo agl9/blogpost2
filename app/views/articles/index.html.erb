@@ -3,7 +3,8 @@
 <ul id = "articles">
   <% @articles.each do |place|%>
     <li> 
-      <%= link_to place.title, article_path(place) %>
+      <%author = Author.find(place.author_id)%>
+      <%= link_to place.title, article_path(place) %> (<%= author.username %>)
     </li>
   <% end %>
 </ul>

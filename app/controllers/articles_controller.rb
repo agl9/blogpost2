@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :require_login, except: [:index, :show]
+  before_action :require_auth, only: [:edit,:destroy]
   
   def index
     @articles = Article.all
@@ -18,8 +19,10 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @author = Author.find(current_user.id)
+    @article = @author.articles.new(article_params)
     if @article.save
+      @article.author_id = current_user.id
       flash.notice = "Woohoo! '#{@article.title}' entry created!"
       redirect_to article_path(@article)
     else 
@@ -29,8 +32,10 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
+    @author = Author.find(current_user.id)
+    @article = @author.articles.new(article_params)
     if @article.update(article_params)
+      @article.author_id = @author.id
       flash.notice = "Woohoo! '#{@article.title}' entry edited!"
       redirect_to article_path(@article)
     else 
@@ -56,6 +61,14 @@ class ArticlesController < ApplicationController
     unless logged_in?
       flash.notice = "Please log in to proceed"
       redirect_to articles_path
+    end
+  end
+
+  def require_auth
+    @article = Article.find(params[:id])
+    unless current_user.id == @article.author_id
+      flash.notice = 'You are not authorized for this action'
+      redirect_to article_path(@article)
     end
   end
 

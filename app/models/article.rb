@@ -1,6 +1,8 @@
 class Article < ApplicationRecord
   validates :title, presence: true, length: {minimum: 5}, format: { with: /\A[a-zA-Z]+\z/, message: "Only alphabets" }
 
+  belongs_to :author
+
   has_many :comments, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings

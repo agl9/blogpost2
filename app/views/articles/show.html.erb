@@ -15,7 +15,7 @@
 </div>
 
 
-<%if logged_in?%>
+<%if current_user.id == @article.author_id%>
   <p> <%= link_to 'Edit place entry', edit_article_path(@article) %>
 
   <p> <%= link_to 'Delete place entry', article_path(@article), method: :delete, data: {confirm: "Are you sure?"}%>
